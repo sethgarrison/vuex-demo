@@ -6,42 +6,35 @@
       <li v-for="item in cart.items">
         <span>{{item.title}}</span>
         <span>{{item.quantity}} * {{item.price}}</span>
+        <button @click="removeFromCart(item)">Remove From Cart</button>
       </li>
     </ul>
 
     <div>
-      <span>Total Price: {{totalPrice}}</span>
+      <span>Total Price: TODO</span>
     </div>
 
   </div>
 </template>
 
 <script>
-  import lodash from 'lodash'
   import book from '@/components/Book'
-  import cart from '@/api/cart'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'vxCart',
     components: {
       'vxBook': book
     },
-    data () {
-      return {
-        cart: cart
-      }
-    },
     computed: {
-      totalPrice() {
-      }
+      ...mapGetters([
+        'cart'
+      ])
     },
     methods: {
-      addToCart (book) {
-        cart.addToCart(book)
-      },
-      removeFromCart (book) {
-        cart.removeFromCart(book)
-      }
+      ...mapActions([
+        'removeFromCart'
+      ])
     }
   }
 </script>
