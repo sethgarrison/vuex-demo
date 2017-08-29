@@ -14,23 +14,22 @@
 </template>
 
 <script>
-  import bookstore from '@/api/books'
   import book from '@/components/Book'
 
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     name: 'vxShop',
     components: {
       'vx-book': book
     },
-    data () {
-      return {
-        books: []
-      }
+    computed: {
+      ...mapGetters([
+        'books'
+      ])
     },
     created () {
-      this.books = bookstore.getBooks()
+      this.$store.dispatch('getBooks')
     },
     methods: {
       ...mapActions([

@@ -1,8 +1,3 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
 const state = {
   cart: {
     totalCost: 0,
@@ -37,11 +32,9 @@ const mutations = {
   }
 }
 
-const store = {
+export default {
   state,
   getters,
   actions,
   mutations
 }
-
-export default new Vuex.Store(store)
