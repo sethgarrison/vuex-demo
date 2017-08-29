@@ -11,7 +11,7 @@
     </ul>
 
     <div>
-      <span>Total Price: TODO</span>
+      <span>Total Price: {{cart.totalCost}}</span>
     </div>
 
   </div>

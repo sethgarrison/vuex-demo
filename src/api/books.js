@@ -7,6 +7,9 @@ export default {
     return axios.get(`${serverUrl}/books`)
   },
   addBook (book) {
-    return axios.post(`${serverUrl}/books`, { book })
+    return axios.post(`${serverUrl}/books`, book)
+  },
+  removeBook (book) {
+    return axios.delete(`${serverUrl}/books/${book.id}`)
   }
 }

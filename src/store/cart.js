@@ -1,3 +1,5 @@
+import lodash from 'lodash'
+
 const state = {
   cart: {
     totalCost: 0,
@@ -27,8 +29,9 @@ const actions = {
 }
 
 const mutations = {
-  cartUpdated (cart) {
+  cartUpdated (state, cart) {
     state.cart = {...state.cart, ...cart}
+    state.cart.totalCost = lodash.reduce(state.cart.items, (sum, item) => sum + item.price * item.quantity, 0)
   }
 }
 

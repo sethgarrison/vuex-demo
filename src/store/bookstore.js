@@ -16,12 +16,20 @@ const actions = {
   async getBooks ({ commit }) {
     const res = await bookApi.getBooks()
     commit('gotBooks', res.data)
+  },
+  async removeBook ({ commit }, book) {
+    await bookApi.removeBook(book)
+    commit('bookDeleted', book)
   }
 }
 
 const mutations = {
   bookAdded (state, book) {
     state.books.push(book)
+  },
+  bookDeleted (state, book) {
+    console.log('book deleted', book)
+    state.books = state.books.filter(b => book.id !== b.id)
   },
   gotBooks (state, books) {
     state.books = books

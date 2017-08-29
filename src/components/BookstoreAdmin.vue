@@ -1,18 +1,26 @@
 <template>
   <div>
-    <h1>Books for sale!</h1>
+    <h1>Book Admin</h1>
 
     <div class="book_list_container">
       <vx-book
         v-for="book in books"
-        :view-only="true"
-        @addToCart="addToCart(book)"
+        :view-only="false"
         @removeBook="removeBook(book)"
         :book="book"
         :key="book.id">
       </vx-book>
 
+      <button @click="initNewBook()">Add Book</button>
     </div>
+
+    <vx-book
+      v-if="newBook"
+      @addBook="addNewBook"
+      :book="newBook"
+      :view-only="false">
+
+    </vx-book>
   </div>
 </template>
 
@@ -41,8 +49,20 @@
     },
     methods: {
       ...mapActions([
-        'addToCart'
-      ])
+        'addBook',
+        'removeBook'
+      ]),
+      initNewBook () {
+        this.newBook = {
+          title: '',
+          price: 0,
+          image: ''
+        }
+      },
+      addNewBook (book) {
+        this.addBook(book)
+        this.newBook = undefined
+      }
     }
   }
 </script>
