@@ -7,7 +7,27 @@
 
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <p>{{ count }}</p>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+    </div>
     <!-- built files will be auto injected -->
   </body>
+
+  <style>
+    body {
+      font-size: 24px;
+    }
+
+    #app {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    p, button {
+      padding: 20px;
+    }
+  </style>
 </html>
