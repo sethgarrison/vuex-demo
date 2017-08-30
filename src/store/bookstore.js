@@ -28,7 +28,6 @@ const mutations = {
     state.books.push(book)
   },
   bookDeleted (state, book) {
-    console.log('book deleted', book)
     state.books = state.books.filter(b => book.id !== b.id)
   },
   gotBooks (state, books) {
