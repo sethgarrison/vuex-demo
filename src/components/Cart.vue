@@ -6,6 +6,7 @@
       <li v-for="item in cart.items">
         <span>{{item.title}}</span>
         <span>{{item.quantity}} * {{item.price}}</span>
+        <button @click="removeFromCart(item)">Remove From Cart</button>
       </li>
     </ul>
 
@@ -17,7 +18,6 @@
 </template>
 
 <script>
-  import lodash from 'lodash'
   import book from '@/components/Book'
   import cart from '@/api/cart'
 
@@ -32,7 +32,7 @@
       }
     },
     computed: {
-      totalPrice() {
+      totalPrice () {
       }
     },
     methods: {

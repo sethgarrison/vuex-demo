@@ -29,8 +29,9 @@
         books: []
       }
     },
-    created () {
-      this.books = bookstore.getBooks()
+    async created () {
+      const res = await bookstore.getBooks()
+      this.books = res.data
     },
     methods: {
       addToCart (book) {

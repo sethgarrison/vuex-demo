@@ -5,7 +5,6 @@
       <h2>{{book.title}}</h2>
       <h3>{{book.price}}</h3>
       <button @click="$emit('addToCart', book)">Add to Cart</button>
-      <button @click="$emit('removeFromCart', book)">Remove from Cart</button>
     </div>
   </div>
 </template>
