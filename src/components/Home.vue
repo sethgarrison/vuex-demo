@@ -8,6 +8,7 @@
       </vx-shop>
 
       <vx-cart
+        v-bind:class="{cartOpened: 'open'}"
         class="cart-container">
       </vx-cart>
     </div>

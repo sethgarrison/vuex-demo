@@ -1,23 +1,26 @@
 <template>
-  <div>
-    <h1>Your Cart</h1>
+  <div class="cart-container">
+    <h1>Cart {{itemCount}}</h1>
 
-    <ul>
-      <li v-for="item in cart.items">
-        <span>{{item.title}}</span>
-        <span>{{item.quantity}} * {{item.price}}</span>
-        <button @click="removeFromCart(item)">Remove From Cart</button>
-      </li>
-    </ul>
+    <div class="cart-contents">
+      <ul>
+        <li v-for="item in cart.items">
+          <span>{{item.title}}</span>
+          <span>{{item.quantity}} * {{item.price}}</span>
+          <button @click="removeFromCart(item)">Remove From Cart</button>
+        </li>
+      </ul>
 
-    <div>
-      <span>Total Price: {{totalPrice}}</span>
+      <div>
+        <span>Total Price: {{totalCost}}</span>
+      </div>
     </div>
 
   </div>
 </template>
 
 <script>
+  import lodash from 'lodash'
   import book from '@/components/Book'
   import cart from '@/api/cart'
 
@@ -28,11 +31,16 @@
     },
     data () {
       return {
-        cart: cart
+        cart: cart,
+        isOpen: true
       }
     },
     computed: {
-      totalPrice () {
+      totalCost () {
+        return lodash.reduce(this.cart.items, (sum, item) => sum + item.price * item.quantity, 0)
+      },
+      itemCount () {
+        return this.cart.items.length
       }
     },
     methods: {
@@ -41,12 +49,15 @@
       },
       removeFromCart (book) {
         cart.removeFromCart(book)
+      },
+      close () {
+        this.isOpen = false
       }
     }
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   ul {
     list-style-type: none;
   }
@@ -54,4 +65,5 @@
     padding: 0;
     margin: 0;
   }
+
 </style>
