@@ -6,7 +6,6 @@
       <vx-book
         v-for="book in books"
         @addToCart="addToCart"
-        @removeFromCart="removeFromCart"
         :book="book"
         :key="book.image">
       </vx-book>
@@ -16,8 +15,8 @@
 
 <script>
   import bookstore from '@/api/books'
-  import cart from '@/api/cart'
   import book from '@/components/Book'
+  import { mapActions } from 'vuex'
 
   export default {
     name: 'vxShop',
@@ -34,12 +33,9 @@
       this.books = res.data
     },
     methods: {
-      addToCart (book) {
-        cart.addToCart(book)
-      },
-      removeFromCart (book) {
-        cart.removeFromCart(book)
-      }
+      ...mapActions([
+        'addToCart'
+      ])
     }
   }
 </script>

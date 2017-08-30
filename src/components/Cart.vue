@@ -12,7 +12,7 @@
       </ul>
 
       <div>
-        <span>Total Price: {{totalCost}}</span>
+        <span>Total Price: {{totalPrice}}</span>
       </div>
     </div>
 
@@ -20,39 +20,25 @@
 </template>
 
 <script>
-  import lodash from 'lodash'
   import book from '@/components/Book'
-  import cart from '@/api/cart'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'vxCart',
     components: {
       'vxBook': book
     },
-    data () {
-      return {
-        cart: cart,
-        isOpen: true
-      }
-    },
     computed: {
-      totalCost () {
-        return lodash.reduce(this.cart.items, (sum, item) => sum + item.price * item.quantity, 0)
-      },
-      itemCount () {
-        return this.cart.items.length
-      }
+      ...mapGetters([
+        'cart',
+        'totalPrice',
+        'itemCount'
+      ])
     },
     methods: {
-      addToCart (book) {
-        cart.addToCart(book)
-      },
-      removeFromCart (book) {
-        cart.removeFromCart(book)
-      },
-      close () {
-        this.isOpen = false
-      }
+      ...mapActions([
+        'removeFromCart'
+      ])
     }
   }
 </script>
