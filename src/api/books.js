@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const serverUrl = 'https://now-project-grynpfdqqi.now.sh'
+const serverUrl = 'https://now-project-ttlgufimia.now.sh'
 
-export default {
+const bookApi = {
   getBooks () {
     return axios.get(`${serverUrl}/books`)
   },
@@ -13,3 +13,5 @@ export default {
     return axios.delete(`${serverUrl}/books/${book.id}`)
   }
 }
+
+export default bookApi
